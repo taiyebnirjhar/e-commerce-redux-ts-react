@@ -8,6 +8,10 @@ import { useEffect, useState } from 'react';
 
 export default function Products() {
   const [data, setData] = useState<IProduct[]>([]);
+
+  const [status, setStatus] = useState<boolean>(false);
+  const [priceRange, setPriceRange] = useState<number>(100);
+
   useEffect(() => {
     fetch('./data.json')
       .then((res) => res.json())
@@ -18,13 +22,13 @@ export default function Products() {
 
   //! Dummy Data
 
-  const status = true;
-  const priceRange = 100;
+  // const status = true;
+  // const priceRange = 100;
 
   //! **
 
-  const handleSlider = (value: number[]) => {
-    console.log(value);
+  const handleSlider = (value: number) => {
+    setPriceRange(value);
   };
 
   let productsData;
@@ -45,7 +49,12 @@ export default function Products() {
         <div>
           <h1 className="text-2xl uppercase">Availability</h1>
           <div className="flex items-center space-x-2 mt-3">
-            <Switch id="in-stock" />
+            <Switch
+              id="in-stock"
+              onClick={() => {
+                setStatus((prev) => !prev);
+              }}
+            />
             <Label htmlFor="in-stock">In stock</Label>
           </div>
         </div>
