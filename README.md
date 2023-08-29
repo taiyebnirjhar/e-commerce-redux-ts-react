@@ -41,19 +41,11 @@ Tech Net is a mini e-commerce project built with React, TypeScript, and Redux. I
   - `components/`: Reusable UI components
   - `pages/`: Application pages
   - `redux/`: Redux store setup and slices
-  - `utils/`: Utility functions
+  - `routes/`: Application routes
 
-## Screenshots
+<!-- ## Screenshots
 
 ![Home Page](screenshots/home.png)
 ![Products Page](screenshots/products.png)
 ![Checkout Page](screenshots/checkout.png)
-![Cart](screenshots/cart.png)
-
-## Acknowledgements
-
-This project was developed by [Your Name]. It's a showcase of React, TypeScript, and Redux skills. Feel free to explore, fork, and use this project as a learning resource or as a starting point for your own projects.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+![Cart](screenshots/cart.png) -->
