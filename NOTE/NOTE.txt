@@ -1,0 +1,5 @@
+# Total
+>> slice
+>>>> total
+>>>>>> addToCart 
+>>>>>>>> total
