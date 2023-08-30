@@ -2,15 +2,20 @@ import ProductCard from '@/components/ProductCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/components/ui/use-toast';
+import {
+  addPriceRange,
+  toggleStockStatus,
+} from '@/redux/features/filter/filterSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/general';
 import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
 
 export default function Products() {
   const [data, setData] = useState<IProduct[]>([]);
 
-  const [status, setStatus] = useState<boolean>(false);
-  const [priceRange, setPriceRange] = useState<number>(100);
+  const { status, priceRange } = useAppSelector((state) => state.filter);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetch('./data.json')
@@ -18,17 +23,16 @@ export default function Products() {
       .then((data) => setData(data));
   }, []);
 
-  const { toast } = useToast();
+  useEffect(() => {
+    console.log(status, priceRange);
+  }, []);
 
-  //! Dummy Data
+  const handleSlider = (value: number[]) => {
+    dispatch(addPriceRange(value[0]));
+  };
 
-  // const status = true;
-  // const priceRange = 100;
-
-  //! **
-
-  const handleSlider = (value: number) => {
-    setPriceRange(value);
+  const handleToggleStock = () => {
+    dispatch(toggleStockStatus(!status));
   };
 
   let productsData;
@@ -51,9 +55,8 @@ export default function Products() {
           <div className="flex items-center space-x-2 mt-3">
             <Switch
               id="in-stock"
-              onClick={() => {
-                setStatus((prev) => !prev);
-              }}
+              onClick={handleToggleStock}
+              checked={status}
             />
             <Label htmlFor="in-stock">In stock</Label>
           </div>
@@ -62,7 +65,7 @@ export default function Products() {
           <h1 className="text-2xl uppercase">Price Range</h1>
           <div className="max-w-xl">
             <Slider
-              defaultValue={[150]}
+              defaultValue={[priceRange]}
               max={150}
               min={0}
               step={1}
