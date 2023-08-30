@@ -11,6 +11,7 @@ import {
   HiOutlineShoppingCart,
   HiOutlineTrash,
 } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import FixedButton from './ui/fixedButton';
 import {
@@ -99,7 +100,11 @@ export default function Cart() {
             })}
           </div>
         </div>
-        <FixedButton />
+        <Link to={'/checkout'}>
+          <SheetTrigger>
+            <FixedButton />
+          </SheetTrigger>
+        </Link>
       </SheetContent>
     </Sheet>
   );
