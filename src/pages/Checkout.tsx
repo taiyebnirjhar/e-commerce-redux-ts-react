@@ -16,8 +16,6 @@ export default function Checkout() {
 
   //! **
 
-  console.log(products);
-
   return (
     <div className="flex justify-center items-center h-[calc(100vh-80px)] gap-10 text-primary">
       <div className="max-w-3xl w-full">

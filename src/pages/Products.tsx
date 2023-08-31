@@ -23,10 +23,6 @@ export default function Products() {
       .then((data) => setData(data));
   }, []);
 
-  useEffect(() => {
-    console.log(status, priceRange);
-  }, []);
-
   const handleSlider = (value: number[]) => {
     dispatch(addPriceRange(value[0]));
   };

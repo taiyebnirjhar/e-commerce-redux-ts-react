@@ -12,7 +12,6 @@ export default function PrivateCheckoutRoute({
 }: PrivateCheckoutRouteProps) {
   const { products } = useAppSelector((state) => state.cart);
   const navigate = useNavigate();
-  console.log(products.length);
 
   useEffect(() => {
     if (products.length === 0) {
@@ -21,7 +20,7 @@ export default function PrivateCheckoutRoute({
       });
       navigate('/products');
     }
-  }, [products]);
+  }, [navigate, products]);
 
   return <>{children}</>;
 }
